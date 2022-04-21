@@ -1,0 +1,54 @@
+.equipo-container {
+    background: rgb(229, 231, 231);
+    display: flex;
+    justify-content: center;
+    position: relative;
+    flex-direction: row;
+
+}
+
+.equipo-content {
+    background-color: rgb(229, 231, 231);
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    position: relative;
+    margin-left: 100px;
+    height: 100vh;
+    width: 100vw;
+}
+
+.table-jugadores {
+    display: none;
+}
+
+.teams-table {
+    border: 1px solid;
+
+}
+
+.button-new {
+    background-color: #555555; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
+    margin-top: 10px;
+    box-shadow: 2px 4px 6px rgb(167, 165, 165);
+}
+
+.teams-table .tbody-table {
+    font-size: 14px;
+    width: 200px;
+}
+
+
+
+

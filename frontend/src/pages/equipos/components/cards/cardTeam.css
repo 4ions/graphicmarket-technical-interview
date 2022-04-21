@@ -1,0 +1,31 @@
+.cards {
+    border-radius: 30px;
+    width: 90%;
+    height: 90%;
+    text-align: center;
+}
+
+.jugadores-container {
+    position: relative;
+    background-color: blueviolet;
+}
+
+.card-button button{
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    width: 60px;
+    height: 20px;
+    border-radius: 5px;
+}
+
+.button-delete {
+    background-color: red;
+}
+
+.edit-button {
+    background-color: green;
+}
