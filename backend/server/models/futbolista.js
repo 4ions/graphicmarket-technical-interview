@@ -12,8 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Futbolista.belongsTo(models.Equipo, {
-        foreignKey: 'id',
-        onDelete: 'CASCADE'
+        foreignKey: "team_id",
+        as: 'team'
       })
 
     }
@@ -23,7 +23,8 @@ module.exports = (sequelize, DataTypes) => {
     age: DataTypes.INTEGER,
     squad_number: DataTypes.INTEGER,
     position: DataTypes.STRING,
-    nationality: DataTypes.STRING
+    nationality: DataTypes.STRING,
+    team_id: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Futbolista',

@@ -20,11 +20,8 @@ const createPlayer = async (req, res) => {
         })
 
         if (!equipo) {
-            if (checkName) {
-                return res.status(401).json({ error: 'El equipo no existe' });
-            }
+            return res.status(401).json({ error: 'El equipo no existe' });
         }
-
         const checkName = await Futbolista.findOne({
             where: {
                 squad_number: squad_number,
@@ -33,11 +30,12 @@ const createPlayer = async (req, res) => {
         })
 
         if (checkName) {
-            return res.status(401).json({ error: 'Ese dorsal ya ha sido asignado' });
+            return res.status(401).json({ error: 'Ese numero de camiseta ya ha sido asignado' });
         }
 
-        console.log(equipo);
         const create = await Futbolista.create(req.body);
+
+        const otro = await equipo.addFutbolistas(create);
         return res.status(201).json({
             create,
         });
@@ -109,7 +107,6 @@ const findPlayer = async (req, res) => {
 
 const updatePlayer = async (req, res) => {
     try {
-        
         const { id } = req.params;
 
         if (!id){
@@ -125,6 +122,7 @@ const updatePlayer = async (req, res) => {
         if (!player){
             return res.status(401).json({error: "Id not found"})
         }
+        console.log(req.body)
 
         const [updated] = await Futbolista.update(req.body, {
             where: {

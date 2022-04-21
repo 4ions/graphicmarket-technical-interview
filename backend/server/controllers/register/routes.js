@@ -8,6 +8,7 @@ const router = Router();
 router.post('/signin',  controllers.signIn);
 router.post('/signup', checkDuplicateUsernameOrEmail, controllers.signUp);
 router.post('/logout', controllers.logoutUser);
+router.get('/all', controllers.listUser);
 
 
 

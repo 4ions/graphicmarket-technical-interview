@@ -48,14 +48,14 @@ const listTeams = async (req, res) => {
     }
 
     const { limit, offset } = personalFunctions.getPagination(page, size);
-
     Equipo.findAndCountAll({
-            include: { model: Futbolista },
-            where: condition,
-            limit,
-            offset
-        })
-            .then(data => {
+        include: { model: Futbolista, as:"futbolistas"},
+        where: condition,
+        limit,
+        offset
+    })
+    .then(data => {
+                console.log("Sdsdds")
                 const response = personalFunctions.getPagingData(data, page, limit);
                 res.send(response);
             })
@@ -77,7 +77,8 @@ const findTeam = async (req, res) => {
                 id: id
             },
             include: {
-                model: Futbolista
+                model: Futbolista,
+                as: 'futbolistas'
             }
         })
         if (!team){
@@ -133,6 +134,37 @@ const updateTeam = async (req, res) => {
 const deleteTeam = async (req, res) => {
     try {
         const { id } = req.params;
+
+        const team = await Equipo.findOne({
+            where: {
+                id: id
+            },
+            include: {
+                model: Futbolista,
+                as: 'futbolistas'
+            }
+        })
+        
+        
+        console.log(team.futbolistas.length);
+
+        if (team.futbolistas.length > 0) {
+            
+            const members = [...team.futbolistas];
+            members.forEach(async element => {
+                console.log(element.id);
+                await Futbolista.destroy({
+                    where: {
+                        id:element.id
+                    }
+                })
+            });
+            console.log("Jugadores eliminados");
+        } else {
+            console.log("No tiene jugadores incritos");
+        }
+
+        console.log("Eliminado equipo")
         const deleted = await Equipo.destroy({
             where: { id: id}
         });
@@ -141,7 +173,7 @@ const deleteTeam = async (req, res) => {
         }
         throw new Error({status:"Equipo no encontrado"});
     } catch(error) {
-        return res.status(401).send(error.message);
+        return res.status(401).send({error: error.message});
     }
 }
 

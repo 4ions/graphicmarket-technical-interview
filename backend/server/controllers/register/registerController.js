@@ -27,7 +27,8 @@ const signUp = async (req, res) => {
         });
 
     } catch (error) {
-        return res.status(400).json({ error: error.message })
+        console.log(error)
+        return res.status(404).json({ error: error.message })
     }
 };
 
@@ -100,11 +101,27 @@ const logoutUser = async (req, res) => {
     }
 }
 
+const listUser = async (req, res) => {
+
+    Register.findAll({})
+            .then(data => {
+                res.send(data);
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message: err.message || "Some error ocurred while retrieving info"
+                })
+            });
+
+    
+};
+
 
 
 module.exports = {
     signUp,
     signIn,
-    logoutUser
+    logoutUser,
+    listUser
 
 }

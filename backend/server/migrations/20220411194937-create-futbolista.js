@@ -15,12 +15,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       team_id: {
-        type:Sequelize.INTEGER,
-        onDelete: 'CASCADE',
+        type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: 'Equipo',
-          key: 'id',
-          as: 'team_id'
+          key: 'team_id'
         },
       },
       squad_number: {
