@@ -23,15 +23,15 @@ app.use(
 router(app);
 
 // Serving static files
-//app.use(express.static(path.join(__dirname, 'src/build')));
+app.use(express.static(path.join(__dirname, 'src/build')));
 
 // Serving upload filaes
-//app.use('/upload', express.static(__dirname + '/src/upload'));
+app.use('/upload', express.static(__dirname + '/src/upload'));
 
 //serving static paths
-//app.get('/*', function (req, res) {
-  //res.sendFile(path.join(__dirname, 'src/build', 'index.html'));
-//});
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'src/build', 'index.html'));
+});
 
 const db = require('./server/models');
 
