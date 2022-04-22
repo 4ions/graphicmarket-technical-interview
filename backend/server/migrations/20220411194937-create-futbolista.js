@@ -22,6 +22,10 @@ module.exports = {
           key: 'team_id'
         },
       },
+      EquipoId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       squad_number: {
         type: Sequelize.INTEGER
       },
