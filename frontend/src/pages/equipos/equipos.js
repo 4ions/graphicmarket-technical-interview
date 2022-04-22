@@ -66,7 +66,9 @@ const Equipos = () => {
                             )
                     }
                 </table>
-                <button className='button-new' icon={<CgMathPlus />}>+ Agregar nuevo equipo <Link to="/create/equipo"/></button>
+                <Link to="/create/equipo">
+                    <button className='button-new' icon={<CgMathPlus />}>+ Agregar nuevo equipo <Link to="/create/equipo"/></button>
+                </Link>
             </div>
         </div>
     )

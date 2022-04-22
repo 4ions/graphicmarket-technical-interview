@@ -82,7 +82,9 @@ const Jugadores = () => {
                                                 <Link to="/update/jugador">
                                                     <button onClick={()=>setData(e)}>Editar</button>
                                                 </Link>
-                                                <button onClick={HandleDelete} id={e.id} data-id={e.id}>Eliminar</button>
+                                                <Link to="/jugadores">
+                                                    <button onClick={HandleDelete} id={e.id} data-id={e.id}>Eliminar</button>
+                                                </Link>
                                             </div>
                                         </div>
 

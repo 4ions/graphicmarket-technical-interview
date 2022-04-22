@@ -28,7 +28,7 @@ const Header = () => {
   
 
 
-    const [menuCollapse, setMenuCollapse] = useState(false)
+    const [menuCollapse, setMenuCollapse] = useState(true)
 
   const menuIconClick = () => {
     menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);

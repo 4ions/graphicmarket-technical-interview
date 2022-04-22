@@ -35,7 +35,7 @@ const createPlayer = async (req, res) => {
 
         const create = await Futbolista.create(req.body);
 
-        const otro = await equipo.addFutbolistas(create);
+        const otro = await equipo.addFutbolista(create);
         return res.status(201).json({
             create,
         });

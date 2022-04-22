@@ -43,14 +43,17 @@ const Register = () => {
                 headers: { "Content-Type": "application/json" }
             }
             try {
+                console.log("sdsds")
+                console.log(options)
                 const res = await axios.request(options)
+                console.log('sdasdsddsdd')
                 if (res.status === 201) {
                     window.location.href = "/";
                 }
                 setHasError(false);
 
             } catch (error) {
-                
+                console.log("Aqui")
                 setError(error.response.data.message)
                 setHasError(true);
             }
@@ -66,7 +69,6 @@ const Register = () => {
             username, password, email
         };
         if (account) {
-            console.log(account)
             IfMatch(account);
         }
     }

@@ -21,7 +21,6 @@ const NewUpdateTeam = () => {
     const [error, setError] = useState('');
 
     function handleChange(name, value) {
-        console.log(`name: ${value}, value ${name}`);
         if (name === 'name') {
             setName(value);
         } else if (name === 'league'){
@@ -64,7 +63,6 @@ const NewUpdateTeam = () => {
             name, league, country
         };
         if (account) {
-            console.log(account)
             IfMatch(account);
         }
     }

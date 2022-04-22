@@ -55,7 +55,6 @@ const listTeams = async (req, res) => {
         offset
     })
     .then(data => {
-                console.log("Sdsdds")
                 const response = personalFunctions.getPagingData(data, page, limit);
                 res.send(response);
             })
@@ -145,10 +144,11 @@ const deleteTeam = async (req, res) => {
             }
         })
         
-        
+        console.log("Aqui");
         console.log(team.futbolista.length);
+        console.log("despues");
 
-        if (team.futbolistas.length > 0) {
+        if (team.futbolista.length > 0) {
             
             const members = [...team.futbolista];
             members.forEach(async element => {

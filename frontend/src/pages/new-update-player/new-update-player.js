@@ -1,4 +1,5 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'
 import Form from './components/form2/form'
 import { API } from '../../config';
 import axios from 'axios';
@@ -29,7 +30,6 @@ const NewUpdatePlayer = () => {
     
 
     function handleChange(name, value) {
-        console.log(`name: ${value}, value ${name}`);
         switch (name) {
             case 'name':
                 setName(value);
@@ -52,19 +52,15 @@ const NewUpdatePlayer = () => {
             default:
                 break;
         }
-        // if (name === 'name') {
-        //     setName(value);
-        // } else if (name === 'league'){
-        //     setLeage(value)
-        // } else if (name === 'country') {
-        //     setCountry(value);
-        // }
+        
     };
 
     const teams = cookies.get('equipos');
     
     async function IfMatch(params) {
+        console.log("Params: ",params)
         if (params.name.length > 0 && params.team_id !== 0) {
+            console.log(params)
             const options = {
                 data: params,
                 method: 'POST',
@@ -72,8 +68,10 @@ const NewUpdatePlayer = () => {
                 headers: { "Content-Type": "application/json", "accesstoken":token }
             }
             try {
+                console.log("Before", options)
                 const res = await axios.request(options)
-                if (res.status === 201) {
+                console.log(res)
+                if (res.status === 200) {
                     window.location.href = "/jugadores";
                 }
                 setHasError(false);
@@ -90,16 +88,14 @@ const NewUpdatePlayer = () => {
         }
     }
     const handleSelect = (e) => {
-        console.log(e.target.value)
         setTeam_id(e.target.value);
     };
-
+    console.log(team_id)
     function handleSubmit() {
         let account = {
             name, age, squad_number, position, nationality, team_id
         };
         if (account) {
-            console.log(account)
             IfMatch(account);
         }
     }
@@ -165,8 +161,12 @@ const NewUpdatePlayer = () => {
                 <Label text="Seleccione el equipo*" />
                 
                 <select value={team_id} onChange={handleSelect}>
+                    <option value='0'>
+                        -
+                    </option>
                     {
                         teams.map(event => {
+                            console.log(event)
                             return (
                                 <option value={event.id}>
                                     {event.name}
@@ -175,11 +175,13 @@ const NewUpdatePlayer = () => {
                         })
                     }
                 </select>
-                
+                <Link to='/jugadores'>
                     <button className='submit-button' onClick={handleSubmit}>
                         
-                    Crear jugador
+                        Crear jugador
                     </button>
+                </Link>
+                    
                 
             </div>
                     

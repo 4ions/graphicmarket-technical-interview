@@ -31,6 +31,7 @@ export const Cart = (teamInfo) => {
             console.log(props.target.id)
             const resp = await fetch(API+`/api/equipo/${props.target.id}`, dataDelete);
             const data = await resp.json();
+            window.location.href = "/equipos";
 
         } catch (err) {
             console.log(err);
@@ -49,7 +50,9 @@ export const Cart = (teamInfo) => {
                     <Link to="/update/equipo">
                         <button className='edit-button' onClick={() => {setData(teamInfo.data)}}>Editar</button>
                     </Link>
-                    <button onClick={HandleDelete} id={teamInfo.data.id} data-id={teamInfo.data.id} className='button-delete'>Eliminar</button>
+                    <Link to="/equipos">
+                        <button onClick={HandleDelete} id={teamInfo.data.id} data-id={teamInfo.data.id} className='button-delete'>Eliminar</button>
+                    </Link>
                     
                 </td>
 
