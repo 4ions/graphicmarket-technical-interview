@@ -49,7 +49,7 @@ const listTeams = async (req, res) => {
 
     const { limit, offset } = personalFunctions.getPagination(page, size);
     Equipo.findAndCountAll({
-        include: { model: Futbolista, as:"futbolistas"},
+        include: { model: Futbolista, as:"futbolista"},
         where: condition,
         limit,
         offset
@@ -78,7 +78,7 @@ const findTeam = async (req, res) => {
             },
             include: {
                 model: Futbolista,
-                as: 'futbolistas'
+                as: 'futbolista'
             }
         })
         if (!team){
@@ -141,16 +141,16 @@ const deleteTeam = async (req, res) => {
             },
             include: {
                 model: Futbolista,
-                as: 'futbolistas'
+                as: 'futbolista'
             }
         })
         
         
-        console.log(team.futbolistas.length);
+        console.log(team.futbolista.length);
 
         if (team.futbolistas.length > 0) {
             
-            const members = [...team.futbolistas];
+            const members = [...team.futbolista];
             members.forEach(async element => {
                 console.log(element.id);
                 await Futbolista.destroy({
